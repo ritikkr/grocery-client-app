@@ -32,14 +32,19 @@ const itemList = [
   {
     title:"Orders",
     icon: <NotificationsActiveOutlined />,
+    link: 'orders'
   },
   {
     title:"Account",
     icon: <AccountBox />,
+    link: 'account'
+
   },
   {
     title:"Support",
     icon: <Support />,
+    link: 'support'
+
   },
 
 ]
@@ -87,7 +92,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function SideBar({open,  handleDrawerClose}) {
   const theme = useTheme();
-  const [subListOpen, setSubListOpen] = React.useState(false);
+  const [subListOpen, setSubListOpen] = React.useState(true);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -97,6 +102,12 @@ export default function SideBar({open,  handleDrawerClose}) {
     // Logic to handle category-based search
     navigate(`search/category=${category}`);
   };
+
+  const handleMenuItemClick = (link) => {
+    // Logic to handle category-based search
+    navigate(`${link}`);
+  };
+
   return (
     <Drawer
         sx={{
@@ -143,7 +154,7 @@ export default function SideBar({open,  handleDrawerClose}) {
         </List>
       </Collapse>
           {itemList.map((item) => (
-            <ListItem key={item.title} disablePadding>
+            <ListItem key={item.title} disablePadding onClick={() => handleMenuItemClick(item.link)}>
               <ListItemButton>
                 <ListItemIcon>
                   {item.icon}

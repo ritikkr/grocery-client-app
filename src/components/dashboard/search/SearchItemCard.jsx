@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { items } from '../../_mock/Item';
 import { Box, Button, Divider, IconButton, Rating, Stack, Typography } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
@@ -12,9 +12,12 @@ const SearchItemCard = ({product}) => {
 
 
     return (
+       
         <Box sx={{ display: 'flex', p: 2, height: 300, width: '70%', justifyContent: 'flex-end', mb:2}}>
             <Box sx={{ width: '50%',  }}>
-                <img src={product.imgLink} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+             <Link to={`/app/products/${product.id}`} style={{textDecoration: 'none', color: '#000'}}>
+                <img src={product.imgLink} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} />
+            </Link>
             </Box>
             <Box sx={{ gap: 1, display: 'flex', flexDirection: 'column', width:'50%', justifyContent:'center', p:2 }}>
                 <Typography variant='h6'> {product.name}</Typography>

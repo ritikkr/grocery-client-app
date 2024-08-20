@@ -20,6 +20,9 @@ import MainLanding from './components/dashboard/landingPage/MainLanding'
 import Product from './components/dashboard/product/Product';
 import SearchResults from './components/dashboard/search/SearchResults';
 import Cart from './components/cart/Cart';
+import OrderItem from './components/dashboard/order/OrderItem';
+import Account from './components/dashboard/account/Account';
+import Support from './components/dashboard/support/Support';
 function App() {
   const [value, setValue] = React.useState(0);
 
@@ -33,10 +36,15 @@ function App() {
           <Route path='/app' element={<Dashboard />}>
             <Route index element={<MainLanding />} />
             <Route path='products/:productId' element={<Product />} />
-            <Route path='order' element={<Order />} />
+            <Route path='account' element={<Account />} />
+            <Route path='support' element={<Support />} />
+            
+            <Route path='orders' element={<Order />} />
+            <Route path='orders/:id' element={<OrderItem />} />
+
             <Route path="search/:query" element={<SearchResults />} />
             <Route path="cart" element={<Cart />} />
-
+            
           </Route>
         </Routes>
       </BrowserRouter>
