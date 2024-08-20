@@ -32,7 +32,7 @@ const settings = ['Categories', 'Orders', 'Account', 'Support', ];
 
 const drawerWidth = 240;
 
-const TopAppBar = ({handleDrawerOpen, open, cartOpen, setCartOpen}) => {
+const TopAppBar = ({handleDrawerOpen, open}) => {
  
 
   return (
@@ -55,15 +55,16 @@ const TopAppBar = ({handleDrawerOpen, open, cartOpen, setCartOpen}) => {
       </Link>
       </Box>
       <SearchBox />
-      <IconButton sx={{  right: 0}} onClick={() => setCartOpen(true)}>
+      <Link to="cart">
+      <IconButton sx={{  right: 0}} >
       <Tooltip title="Cart">
-        {/* <Link to="cart"> */}
         <Badge  badgeContent={4} color="secondary" >
         <ShoppingBag sx={{color: "#fff" }}/>
         </Badge>
-        {/* </Link> */}
         </Tooltip>
       </IconButton>
+      </Link>
+
      
      
     </Toolbar>

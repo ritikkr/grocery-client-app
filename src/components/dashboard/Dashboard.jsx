@@ -66,7 +66,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex',}}>
+    <Box sx={{ display: 'flex', background: '#f6f9fc' }}>
       <Navigation open={open} setOpen={setOpen} handleDrawerClose={handleDrawerClose} handleDrawerOpen={handleDrawerOpen}/>
       
       <Main component={"main"} open={open} onClick={() => setOpen(false)}>

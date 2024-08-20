@@ -1,18 +1,15 @@
 import { Box, Drawer } from '@mui/material'
 import React, { useState } from 'react'
+import CartStepper from './CartStepper'
+import CartReview from './CartReview'
 
-const Cart = ({open, onClose}) => {
+const Cart = () => {
 
   return (
-    <Drawer
-            anchor={'right'}
-            open={open}
-            onClose={() => onClose(false)}
-          >
-            <Box sx={{width: 380}}>
-                    
-            </Box>
-          </Drawer>
+    <Box >
+        {/* <CartStepper /> */}
+        <CartReview />
+    </Box>
   )
 }
 

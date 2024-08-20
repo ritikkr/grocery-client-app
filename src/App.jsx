@@ -35,7 +35,7 @@ function App() {
             <Route path='products/:productId' element={<Product />} />
             <Route path='order' element={<Order />} />
             <Route path="search/:query" element={<SearchResults />} />
-            {/* <Route path="cart" element={<Cart />} /> */}
+            <Route path="cart" element={<Cart />} />
 
           </Route>
         </Routes>

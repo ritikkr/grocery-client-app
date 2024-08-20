@@ -41,16 +41,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Navigation({open, setOpen, handleDrawerClose, handleDrawerOpen}) {
   const theme = useTheme();
-  const [cartOpen, setCartOpen] = React.useState(false);
+  
   
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex',}}>
       <CssBaseline />
-      <TopAppBar handleDrawerOpen={handleDrawerOpen} open={open} cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+      <TopAppBar handleDrawerOpen={handleDrawerOpen} open={open} />
       <SideBar open={open} handleDrawerClose={handleDrawerClose} />
 
-      {cartOpen && <Cart open={cartOpen} onClose={() => setCartOpen(false)} />}
       
     </Box>
   );
