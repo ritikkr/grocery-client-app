@@ -27,6 +27,8 @@ const Home = () => {
                 <Typography  sx={{fontWeight: 300, fontSize: {xs: '2.2rem', md:'3.75rem'}, letterHeight: '1.2' }}>Discover Daily Deals and Exclusive Offers.</Typography>
                 <Typography variant='h5' >Shop from Anywhere, Anytime.</Typography>
                  <Button variant='contained' sx={{height: 50, width: 200}}  onClick={handleNavigateLogin}>Get Started</Button>
+                 <Button variant='contained' sx={{height: 50, width: 200}}  onClick={() => navigate('/app')}>Go to App</Button>
+
 
             </Box>
             <Box  sx={{width: {xs: '90%', md:'40%'}, p:3, }}>
