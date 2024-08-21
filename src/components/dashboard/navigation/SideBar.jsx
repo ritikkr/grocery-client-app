@@ -106,6 +106,7 @@ export default function SideBar({open,  handleDrawerClose}) {
   const handleMenuItemClick = (link) => {
     // Logic to handle category-based search
     navigate(`${link}`);
+    handleDrawerClose()
   };
 
   return (

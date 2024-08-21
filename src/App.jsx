@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
-import NavBar from './components/top_menu/NavBar'
-import HeroPage from './components/top_menu/HeroPage'
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Container } from '@mui/material'
+
 import CustomThemeProvider from './themes/CustomThemeProvider'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/home/Home'
