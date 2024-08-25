@@ -67,6 +67,8 @@ export default function Dashboard() {
   const handle401Response = () => {
     // Implement your desired logic here
     console.log('Unauthorized access.');
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
     // Redirect to login page:
     navigate('/login');
   };
