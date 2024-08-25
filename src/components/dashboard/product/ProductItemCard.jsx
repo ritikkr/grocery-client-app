@@ -14,7 +14,7 @@ const ProductItemCard = ({product}) => {
     return (
         <Box sx={{ display: 'flex', p: 2 }}>
             <Box sx={{ width: '50%' }}>
-                <img src={product.imgLink} style={{ width: '100%', height: 500, objectFit: 'contain', }} />
+                <img src={product.imageUrl} style={{ width: '100%', height: 500, objectFit: 'contain', }} />
             </Box>
             <Box sx={{ gap: 2, display: 'flex', flexDirection: 'column', width: '50%' }}>
                 <Typography variant='h3'> {product.name}</Typography>

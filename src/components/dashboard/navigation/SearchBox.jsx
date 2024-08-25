@@ -56,6 +56,7 @@ const SearchBox = () => {
 
 const handleSearch = (query) => {
   navigate(`search/${query}`);
+
 };
 
 const handleSearchInputChange = (event) => {
@@ -63,10 +64,14 @@ const handleSearchInputChange = (event) => {
 };
 
 const handleSearchKeyDown = (event) => {
-  if (event.key   
-=== 'Enter') {
-    handleSearch(searchInputValue)
+  if (event.key === 'Enter') {
+    if(searchInputValue !== ""){
+      handleSearch(searchInputValue)
+
+    }
+    // setSearchInputValue("")
   }
+ 
 };
 
 

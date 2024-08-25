@@ -19,11 +19,13 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Outlet, useNavigate } from 'react-router-dom';
-
+import {useAuth} from "../../hooks/useProvideAuth"
 import SearchBox from './SearchBox';
 import TopAppBar from './TopAppBar';
-import { AccountBox, Book, Category, ExpandLess, ExpandMore, MedicalInformation, NotificationsActiveOutlined, StarBorderOutlined, Support, Toys } from '@mui/icons-material';
+import { AccountBox, Book, CardGiftcard, Category, ExpandLess, ExpandMore, GifBox, GifTwoTone, MailLock, MedicalInformation, MedicalServices, NotificationsActiveOutlined, PendingActions, StarBorderOutlined, Support, Toys } from '@mui/icons-material';
 import { Collapse } from '@mui/material';
+import axios from 'axios';
+
 
 const drawerWidth = 240;
 
@@ -49,34 +51,15 @@ const itemList = [
 
 ]
 
-const categoryItemList = [
-  {
-  title:"Fruits",
-  icon: <Category />,
-  },
-  {
-    title:"Vegetables",
-    icon: <Category />,
-    },
-
-    {
-      title:"Stationary",
-      icon: <Book />,
-      },
-  {
-    title:"Dairy",
-    icon: <NotificationsActiveOutlined />,
-  },
-  {
-    title:"Medicine",
-    icon: <MedicalInformation />,
-  },
-  {
-    title:"Toys",
-    icon: <Toys/>,
-  },
-
-]
+const getCategoryIcons = (name) => {
+  switch(name){
+    case "Dairy": return <MailLock />
+    case "Stationary": return <Book />
+    case "Medicine": return <MedicalServices />
+    case "Gift": return <CardGiftcard />
+    default: return <PendingActions />
+  }
+}
 
 
 
@@ -93,14 +76,20 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function SideBar({open,  handleDrawerClose}) {
   const theme = useTheme();
   const [subListOpen, setSubListOpen] = React.useState(true);
+  const {logOut} = useAuth()
+  const [categoryItemList, setCategoryItemList] = React.useState([])
   const navigate = useNavigate();
 
   const handleClick = () => {
     setSubListOpen(!subListOpen);
   };
-  const handleCategoryClick = (category) => {
+
+
+
+
+  const handleCategoryClick = (categoryId) => {
     // Logic to handle category-based search
-    navigate(`search/category=${category}`);
+    navigate(`search/category=${categoryId}`);
     handleDrawerClose()
   };
 
@@ -109,6 +98,25 @@ export default function SideBar({open,  handleDrawerClose}) {
     navigate(`${link}`);
     handleDrawerClose()
   };
+
+  const handleLogOut = () => {
+      logOut()
+      navigate("/")
+  }
+
+
+  React.useEffect(() => {
+    
+      axios.get("/api/category", {
+        headers: {
+          Authorization: 'Bearer '+ JSON.parse(localStorage.getItem("token"))
+        }
+      }).then((res) => {
+        console.log("cat list: ", res.data);
+        setCategoryItemList(res.data)
+        
+      })
+  }, [])
 
   return (
     <Drawer
@@ -144,12 +152,12 @@ export default function SideBar({open,  handleDrawerClose}) {
           <Collapse in={subListOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={{ml:2}}>
         {categoryItemList.map((item) => (
-            <ListItem key={item.title} disablePadding onClick={() => handleCategoryClick(item.title)}>
+            <ListItem key={item.name} disablePadding onClick={() => handleCategoryClick(item.categoryId)}>
               <ListItemButton>
                 <ListItemIcon>
-                  {item.icon}
+          { getCategoryIcons(item.name)}
                 </ListItemIcon>
-                <ListItemText primary={item.title} />
+                <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -165,6 +173,14 @@ export default function SideBar({open,  handleDrawerClose}) {
               </ListItemButton>
             </ListItem>
           ))}
+           <ListItem  disablePadding onClick={handleLogOut}>
+              <ListItemButton>
+                <ListItemIcon>
+                    <Book />
+                </ListItemIcon>
+                <ListItemText primary="Log Out" />
+              </ListItemButton>
+            </ListItem>
         </List>
       </Drawer>
   );

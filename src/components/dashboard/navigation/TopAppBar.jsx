@@ -10,6 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchBox from './SearchBox';
 import { Link, useNavigate } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -32,7 +33,10 @@ const settings = ['Categories', 'Orders', 'Account', 'Support', ];
 
 const drawerWidth = 240;
 
+
 const TopAppBar = ({handleDrawerOpen, open}) => {
+
+  const items = useSelector((state) => state.cart.items)
  
 
   return (
@@ -58,7 +62,7 @@ const TopAppBar = ({handleDrawerOpen, open}) => {
       <Link to="cart">
       <IconButton sx={{  right: 0}} >
       <Tooltip title="Cart">
-        <Badge  badgeContent={4} color="secondary" >
+        <Badge  badgeContent={items.length} color="secondary" >
         <ShoppingBag sx={{color: "#fff" }}/>
         </Badge>
         </Tooltip>

@@ -15,11 +15,16 @@ import Cart from './components/cart/Cart';
 import OrderItem from './components/dashboard/order/OrderItem';
 import Account from './components/dashboard/account/Account';
 import Support from './components/dashboard/support/Support';
+import { ProvideAuth } from './components/hooks/useProvideAuth'
+import { Provider } from 'react-redux'
+import { store } from './store/Store'
 function App() {
   const [value, setValue] = React.useState(0);
 
   return (
     <CustomThemeProvider>
+      <Provider store={store}>
+      <ProvideAuth>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
@@ -40,6 +45,8 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </ProvideAuth>
+      </Provider>
     </CustomThemeProvider>
   )
 }
