@@ -64,6 +64,22 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handle401Response = () => {
+    // Implement your desired logic here
+    console.log('Unauthorized access.');
+    // Redirect to login page:
+    navigate('/login');
+  };
+
+  axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response && error.response.status === 401) {
+        handle401Response();
+      }
+      return Promise.reject(error);
+    }
+  );
 
   return (
     <Box sx={{ display: 'flex', background: '#f6f9fc' }}>
