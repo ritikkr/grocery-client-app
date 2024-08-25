@@ -18,9 +18,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from './navigation/SideBar';
 import Navigation from './navigation/Navigation';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -56,6 +57,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function Dashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate()
 
   const handleDrawerOpen = () => {
     setOpen(true);
